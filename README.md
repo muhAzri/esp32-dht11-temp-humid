@@ -1,3 +1,33 @@
+# ESP32 Temperature and Humidity Sensor with WebSocket Integration
+
+This project demonstrates how to use an ESP32 to read temperature and humidity data from a DHT11 sensor and send it to a server using HTTP and WebSocket protocols. The server is implemented in Go, and it handles WebSocket connections to broadcast the sensor data to connected clients.
+
+## Components
+
+- ESP32 microcontroller
+- DHT11 temperature and humidity sensor
+- Wi-Fi network
+- Go server for WebSocket connections
+
+## ESP32 Setup
+
+### Libraries Required
+
+- WiFi
+- HTTPClient
+- Arduino_JSON
+- DHT
+
+### Wiring
+
+- DHT11 data pin connected to GPIO4 of the ESP32
+- Power the DHT11 sensor with 3.3V and GND
+
+### Code
+
+Save the following code as `main.ino` and upload it to your ESP32:
+
+```cpp
 #include <WiFi.h>
 #include <Arduino_JSON.h>
 #include <DHT.h>
@@ -216,3 +246,34 @@ void setup() {
 void loop() {
   app.loop();
 }
+
+```
+
+### Running the Project
+Set up the server:
+
+1. Install Go and the required libraries.
+    - Save the Go code in a file named main.go.
+    - Create an index.html file for serving the webpage (if needed).
+    - Run the server using the command: go run main.go.
+
+2. Set up the ESP32:
+
+    - Install the required Arduino libraries.
+    - Upload the main.ino code to your ESP32.
+    - Ensure your ESP32 is connected to the same network as your server.
+
+3. Test the Setup:
+
+    - Open the webpage served by your Go server in a browser.
+    - The ESP32 will read the temperature and humidity data and send it to the server.
+    - The server will broadcast the data to all connected WebSocket clients.
+
+### Notes
+Ensure the Wi-Fi credentials are correctly set in the ESP32 code.
+
+Update the server endpoint in the ESP32 code to match your server's IP address and port.
+
+Debugging information will be printed to the Serial Monitor of the Arduino IDE and the console running the Go server.
+
+Enjoy monitoring your environment's temperature and humidity in real-time!
